@@ -1,0 +1,11 @@
+name: ChatEmoji
+version: '${version}'
+main: org.ramki.chatemoji.ChatEmoji
+api-version: '1.21'
+description: Player head emojis in chat.
+authors: [ ue_rami ]
+
+permissions:
+  chatemoji.use:
+    description: Allows chat emojis and /emoji when permission.required is enabled.
+    default: op
