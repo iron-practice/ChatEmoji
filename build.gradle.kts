@@ -6,6 +6,9 @@ plugins {
     id("com.gradleup.shadow") version "9.6.0"
 }
 
+group = "org.ramki"
+version = "1.0.0"
+
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
