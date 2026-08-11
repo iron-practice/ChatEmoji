@@ -77,7 +77,7 @@ public final class EmojiRegistry {
             this.listMessage = MiniMessage.miniMessage().deserialize("<red>No emoji loaded!");
         } else {
              TextComponent.Builder list = Component.text()
-                    .append(Component.text("Emojis:", NamedTextColor.AQUA));
+                    .append(MiniMessage.miniMessage().deserialize("<reset><!italic>\n<aqua>Emojis:\n"));
             for (Map.Entry<String, Component> entry : loaded.entrySet()) {
                 list.appendNewline()
                         .append(Component.text(":" + entry.getKey() + ":", NamedTextColor.YELLOW))
