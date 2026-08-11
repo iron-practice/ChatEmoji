@@ -18,18 +18,24 @@
 package org.ramki.chatemoji.command;
 
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.ramki.chatemoji.ChatEmoji;
 import org.ramki.chatemoji.config.EmojiSettings;
 import org.ramki.chatemoji.emoji.EmojiRegistry;
 
+import java.util.Set;
+
 public final class EmojiCommand {
+    private static final Set<String> APPLE_STRING = Set.of("true", "apple");
+    private static final Set<String> DEFAULT = Set.of("false", "default");
 
     private final EmojiRegistry registry;
     private final EmojiSettings settings;
@@ -40,6 +46,8 @@ public final class EmojiCommand {
         this.registry = registry;
         this.settings = settings;
     }
+
+    boolean toggle;
 
     /*
      * The permission is checked in the executor instead of requires() so
@@ -61,6 +69,33 @@ public final class EmojiCommand {
                     player.sendMessage(this.registry.listMessage());
                     return Command.SINGLE_SUCCESS;
                 })
+
+                .then(Commands.literal("style")
+                        .requires(sender -> sender.getSender().isOp() || sender.getSender().hasPermission("chatemoji.admin"))
+                        .then(Commands.argument("name", StringArgumentType.word())
+                                .suggests((context, builder) -> {
+                                    builder.suggest("apple");
+                                    builder.suggest("default");
+                                    return builder.buildFuture();
+                                })
+                                .executes(context -> {
+                                    CommandSender sender = context.getSource().getSender();
+                                    final String name = StringArgumentType.getString(context, "name");
+                                    if (name.equalsIgnoreCase("apple")) {
+                                        this.registry.load(this.chatEmoji.getConfig().getConfigurationSection("apple"));
+                                        this.chatEmoji.getConfig().set("emoji-style", "apple");
+                                        this.chatEmoji.saveConfig();
+                                        sender.sendRichMessage("<green>updated emoji style to: <yellow>apple");
+                                    } else if (name.equalsIgnoreCase("default")) {
+                                        this.registry.load(this.chatEmoji.getConfig().getConfigurationSection("emojis"));
+                                        this.chatEmoji.getConfig().set("emoji-style", "emojis");
+                                        this.chatEmoji.saveConfig();
+                                        sender.sendRichMessage("<green>updated emoji style to: <yellow>default");
+                                    } else {
+                                        sender.sendRichMessage("<red>Invalid style option, use: <yellow>default/apple");
+                                    }
+                                    return Command.SINGLE_SUCCESS;
+                                })))
                 .build();
     }
 }
