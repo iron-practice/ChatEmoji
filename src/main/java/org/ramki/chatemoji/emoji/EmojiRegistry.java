@@ -74,9 +74,8 @@ public final class EmojiRegistry {
         }
 
         if (loaded.isEmpty()) {
-            this.listMessage = Component.text(MiniMessage.miniMessage().deserialize("<red>No emoji loaded!"));
-        }
-         else {
+            this.listMessage = MiniMessage.miniMessage().deserialize("<red>No emoji loaded!");
+        } else {
              TextComponent.Builder list = Component.text()
                     .append(Component.text("Emojis:", NamedTextColor.AQUA));
             for (Map.Entry<String, Component> entry : loaded.entrySet()) {
