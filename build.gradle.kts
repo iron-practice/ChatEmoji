@@ -9,6 +9,9 @@ version = "1.0.0"
 
 val paperApi = "1.21.11-R0.1-SNAPSHOT"
 val mcVersion = paperApi.split("-")[0]
+val cleanRun by tasks.registering(Delete::class) {
+    delete(layout.projectDirectory.dir("run"))
+}
 
 repositories {
     mavenCentral()
@@ -25,6 +28,7 @@ java {
 
 tasks {
     runServer {
+        dependsOn(cleanRun)
         minecraftVersion(mcVersion)
         runDirectory = rootDir.resolve("run/paper/$mcVersion")
         jvmArgs = listOf(
