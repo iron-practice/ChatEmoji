@@ -22,6 +22,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.ShadowColor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
 import org.bukkit.configuration.ConfigurationSection;
@@ -72,9 +73,11 @@ public final class EmojiRegistry {
             }
         }
 
-        if (!loaded.isEmpty()) {
-            TextComponent.Builder list = Component.text()
-                    .append(Component.text("Emojis:", NamedTextColor.AQUA));
+        if (loaded.isEmpty()) {
+            this.listMessage = MiniMessage.miniMessage().deserialize("<red>No emoji loaded!");
+        } else {
+             TextComponent.Builder list = Component.text()
+                    .append(MiniMessage.miniMessage().deserialize("<reset><!italic>\n<aqua>Emojis:\n"));
             for (Map.Entry<String, Component> entry : loaded.entrySet()) {
                 list.appendNewline()
                         .append(Component.text(":" + entry.getKey() + ":", NamedTextColor.YELLOW))
