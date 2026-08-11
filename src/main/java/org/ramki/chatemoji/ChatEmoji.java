@@ -26,12 +26,12 @@ import org.ramki.chatemoji.listener.EmojiChatListener;
 
 public final class ChatEmoji extends JavaPlugin {
 
+    /*
+     * Player head chat components only exist since 1.21.9. Failing here with
+     * a clear message beats a NoClassDefFoundError mid-chat on older servers.
+     */
     @Override
     public void onEnable() {
-        /*
-         * Player head chat components only exist since 1.21.9. Failing here with
-         * a clear message beats a NoClassDefFoundError mid-chat on older servers.
-         */
         try {
             Class.forName("net.kyori.adventure.text.object.ObjectContents");
         } catch (ClassNotFoundException ex) {
@@ -44,11 +44,11 @@ public final class ChatEmoji extends JavaPlugin {
 
         EmojiSettings settings = EmojiSettings.load(getConfig());
         EmojiRegistry registry = new EmojiRegistry(getLogger());
-        registry.load(getConfig().getConfigurationSection("emojis"));
+        registry.load(getConfig().getConfigurationSection(getConfig().getString("emoji-style", "emojis")));
 
         getServer().getPluginManager().registerEvents(new EmojiChatListener(registry, settings), this);
 
-        EmojiCommand emojiCommand = new EmojiCommand(registry, settings);
+        EmojiCommand emojiCommand = new EmojiCommand(registry, settings, this);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
                 commands.registrar().register(emojiCommand.build(), "Shows the list of chat emojis"));
     }

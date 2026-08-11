@@ -25,6 +25,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.ramki.chatemoji.ChatEmoji;
 import org.ramki.chatemoji.config.EmojiSettings;
 import org.ramki.chatemoji.emoji.EmojiRegistry;
 
@@ -32,8 +33,10 @@ public final class EmojiCommand {
 
     private final EmojiRegistry registry;
     private final EmojiSettings settings;
+    private final ChatEmoji chatEmoji;
 
-    public EmojiCommand(EmojiRegistry registry, EmojiSettings settings) {
+    public EmojiCommand(EmojiRegistry registry, EmojiSettings settings, ChatEmoji chatEmoji) {
+        this.chatEmoji = chatEmoji;
         this.registry = registry;
         this.settings = settings;
     }
