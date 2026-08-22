@@ -1,0 +1,42 @@
+package org.ramki.chatemoji.listeners;
+
+import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.object.ObjectContents;
+import net.kyori.adventure.text.object.PlayerHeadObjectContents;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.ramki.chatemoji.ChatEmoji;
+import org.ramki.chatemoji.enums.Emojis;
+
+import java.util.HashMap;
+
+public class ChatListener implements Listener {
+    private ChatEmoji chatEmoji;
+    public ChatListener(ChatEmoji chatEmoji) { this.chatEmoji = chatEmoji; }
+
+    private HashMap<String, String> heads = new HashMap<>();
+
+    public void headSetter() {
+        for (Emojis emojis : Emojis.values()) {
+            String key = emojis.getKey();
+            String value = emojis.getValue();
+            heads.put(key, value);
+            PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                    .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
+                    .build();
+            Component emojiHead = Component.object(fortnite);
+            // Keysetter -> headComponent -> textreplacement
+            TextReplacementConfig idk = TextReplacementConfig.builder()
+                    .matchLiteral(":" + heads.containsKey(key) + ":")
+                    .replacement(emojiHead)
+                    .build();
+        }
+    }
+
+    @EventHandler
+    public void onChat(AsyncChatEvent e) {
+
+    }
+}

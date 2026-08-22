@@ -5,10 +5,6 @@ permission:
   required: false
   node: "chatemoji.use"
 
-messages:
-  # Shown when permission.required is true and the player lacks the node. MiniMessage format.
-  no-permission: "<red>You do not have permission to do that."
-
 # Emoji name -> base64 player head texture (the "Value" field on minecraft-heads.com).
 # Use them in chat as :name:. /emoji lists them in the order below.
 emojis:
