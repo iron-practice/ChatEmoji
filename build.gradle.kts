@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.9-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
 }
 
 java {
@@ -26,8 +26,9 @@ val javaToolchainService = extensions.getByType(JavaToolchainService::class.java
 
 tasks {
     runServer {
-        minecraftVersion("26.2")
+        minecraftVersion("1.21.11")
         jvmArgs("-Xms2G", "-Xmx2G")
+        jvmArgs("-Dcom.mojang.eula.agree=true")
         javaLauncher.set(javaToolchainService.launcherFor {
             languageVersion.set(JavaLanguageVersion.of(25))
         })
