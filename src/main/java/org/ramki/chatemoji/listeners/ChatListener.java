@@ -7,6 +7,7 @@ import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.ramki.chatemoji.ChatEmoji;
 import org.ramki.chatemoji.enums.Emojis;
@@ -19,7 +20,7 @@ public class ChatListener implements Listener {
 
     private HashMap<String, String> heads = new HashMap<>();
 
-    @EventHandler
+    @EventHandler (priority = EventPriority.LOW)
     public void onChat(AsyncChatEvent e) {
         final Player player = e.getPlayer();
         Component message = e.message();
