@@ -2,6 +2,7 @@ package org.ramki.chatemoji;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.ramki.chatemoji.commands.EmojiCommands;
 import org.ramki.chatemoji.listeners.ChatListener;
 
 public class ChatEmoji extends JavaPlugin {
@@ -11,6 +12,9 @@ public class ChatEmoji extends JavaPlugin {
         saveDefaultConfig();
 
         Bukkit.getPluginManager().registerEvents(new ChatListener(this), this);
+
+        getCommand("emoji").setExecutor(new EmojiCommands());
+        getCommand("emoji").setTabCompleter(new EmojiCommands());
     }
 
     @Override

@@ -4,3 +4,6 @@ main: org.ramki.chatemoji.ChatEmoji
 api-version: '1.21'
 description: Player head emojis in chat.
 authors: [ ue_rami ]
+
+commands:
+  emoji:
