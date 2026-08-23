@@ -1,9 +1,11 @@
 package org.ramki.chatemoji.commands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
+import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -34,7 +36,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
             if (toggle.equalsIgnoreCase("default")) {
 
                 player.sendMessage(MiniMessage.miniMessage().deserialize(
-                        "\n<yellow>Chat Emojis\n\n"
+                        "\n<green>Chat Emojis\n"
                 ));
 
                 for (Emojis emojis : Emojis.values()) {
@@ -44,15 +46,14 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
                     PlayerHeadObjectContents builder = ObjectContents.playerHead()
                             .profileProperty(PlayerHeadObjectContents.property("textures", value))
                             .build();
-                    Component heads = Component.object(builder);
+                    Component heads = Component.object(builder).color(NamedTextColor.WHITE);
 
                      Component fortniteText = MiniMessage.miniMessage().deserialize(
-                            "<yellow>:" + key + ": <gray>- "
+                            "<yellow>:" + key + ": <gray>- <reset>"
                      );
                      Component fortnite = fortniteText.append(heads);
 
                      player.sendMessage(fortnite);
-                     player.sendMessage("\n");
                 }
 
                 player.sendMessage("\n");
