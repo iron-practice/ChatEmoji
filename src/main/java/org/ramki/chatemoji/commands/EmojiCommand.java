@@ -32,6 +32,12 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
         String toggle = chatEmoji.getConfig().getString("style");
 
+        if (args.length == 1 && args[0].equalsIgnoreCase("reload") && player.hasPermission("chatemoji.admin")) {
+            chatEmoji.reloadConfig();
+            chatEmoji.getConfig();
+            player.sendMessage(Component.text("config reloaded!", NamedTextColor.GREEN));
+        }
+
         if (args.length <= 0) {
             if (toggle.equalsIgnoreCase("default")) {
 
@@ -58,7 +64,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
                 player.sendMessage("\n");
 
-            }
+            } //Apple style emoji
         }
 
         return true;
