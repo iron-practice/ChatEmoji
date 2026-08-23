@@ -34,7 +34,7 @@ public class ChatListener implements Listener {
             Component emojiHead = Component.object(fortnite);
             // Keysetter -> headComponent -> textreplacement
             TextReplacementConfig idk = TextReplacementConfig.builder()
-                    .matchLiteral(":" + heads.containsKey(key) + ":")
+                    .matchLiteral(":" + key + ":")
                     .replacement(emojiHead)
                     .build();
             message = message.replaceText(idk);
