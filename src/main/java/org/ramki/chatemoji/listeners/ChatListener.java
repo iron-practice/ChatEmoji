@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.ramki.chatemoji.ChatEmoji;
@@ -18,7 +19,11 @@ public class ChatListener implements Listener {
 
     private HashMap<String, String> heads = new HashMap<>();
 
-    public void headSetter() {
+    @EventHandler
+    public void onChat(AsyncChatEvent e) {
+        final Player player = e.getPlayer();
+        Component message = e.message();
+
         for (Emojis emojis : Emojis.values()) {
             String key = emojis.getKey();
             String value = emojis.getValue();
@@ -32,11 +37,9 @@ public class ChatListener implements Listener {
                     .matchLiteral(":" + heads.containsKey(key) + ":")
                     .replacement(emojiHead)
                     .build();
+            message = message.replaceText(idk);
         }
-    }
 
-    @EventHandler
-    public void onChat(AsyncChatEvent e) {
-
+        e.message(message);
     }
 }
