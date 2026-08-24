@@ -32,6 +32,9 @@ tasks {
         javaLauncher.set(javaToolchainService.launcherFor {
             languageVersion.set(JavaLanguageVersion.of(25))
         })
+        downloadPlugins {
+            url("https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
+        }
     }
 
     shadowJar {

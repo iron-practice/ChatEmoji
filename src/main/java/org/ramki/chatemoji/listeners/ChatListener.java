@@ -27,6 +27,10 @@ public class ChatListener implements Listener {
         Component message = e.message();
 
         if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Default")) {
+            if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
+                return;
+            }
+
             for (Emojis emojis : Emojis.values()) {
                 String key = emojis.getKey();
                 String value = emojis.getValue();
@@ -45,6 +49,10 @@ public class ChatListener implements Listener {
         }
 
         if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Apple")) {
+            if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
+                return;
+            }
+
             for (AppleEmojis appleEmojis : AppleEmojis.values()) {
                 String keyApple = appleEmojis.getKey();
                 String valueApple = appleEmojis.getValue();

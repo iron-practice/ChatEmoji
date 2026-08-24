@@ -1,3 +1,7 @@
 #Change the Style of the emoji either Apple or Default style
 #Only: "Apple" or "Default"
 style: "default"
+
+#if it's true, only players with the permission "chatemoji.use"
+#Permission: "chatemoji.use"
+permission: false
