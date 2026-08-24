@@ -1,3 +1,5 @@
+[![modrinth](https://img.shields.io/modrinth/v/ChatEmoji?label=Modrinth&style=for-the-badge)](https://modrinth.com/plugin/chatemoji)
+
 # ChatEmoji
 
 Player head emojis in chat, using the object text components added in Minecraft 1.21.9.
@@ -8,12 +10,7 @@ Requires Paper 1.21.9 or newer. No dependencies.
 
 ## Configuration
 
-Emojis are defined in `config.yml` as `name: base64 texture` pairs (the "Value" field on
-[minecraft-heads.com](https://minecraft-heads.com)). `/emoji` lists them in config order.
-
-By default everyone can use emojis. To restrict them, set `permission.required: true` and
-grant the `chatemoji.use` node (configurable via `permission.node`). The deny message is
-configurable in MiniMessage format under `messages.no-permission`.
+By default everyone can use emojis.
 
 ## Installation
 
