@@ -88,7 +88,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
         }
 
         if (!player.hasPermission("chatemoji.admin")) {
-            sender.sendMessage(Component.text("You do not have permission to do that", NamedTextColor.RED));
+            sender.sendMessage(Component.text("You do not have permission to do that!", NamedTextColor.RED));
             return true;
         }
 
@@ -97,6 +97,19 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        
+        if (args.length == 1) {
+            String arg = args[0].toLowerCase();
+            return List.of("reload", "style").stream()
+                    .filter(s -> s.startsWith(arg))
+                    .toList();
+        }
+
+        if (args.length == 2 && args[0].equalsIgnoreCase("style")) {
+            String arg1 = args[1].toLowerCase();
+            return List.of("default", "apple").stream()
+                    .filter(s -> s.startsWith(arg1))
+                    .toList();
+        }
+        return List.of();
     }
 }
