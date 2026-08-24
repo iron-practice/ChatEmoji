@@ -42,6 +42,10 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
         if (args.length <= 0) {
             if (toggle.equalsIgnoreCase("default")) {
+                if (chatEmoji.getConfig().getBoolean("permission") == true && (!sender.hasPermission("chatemoji.use"))) {
+                    sender.sendMessage(Component.text("You do not have permission to do that!", NamedTextColor.RED));
+                    return true;
+                }
 
                 //all send messages
 
@@ -71,6 +75,10 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
             }
 
             if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("apple")) {
+                if (chatEmoji.getConfig().getBoolean("permission") == true && (!sender.hasPermission("chatemoji.use"))) {
+                    sender.sendMessage(Component.text("You do not have permission to do that!", NamedTextColor.RED));
+                    return true;
+                }
 
                 player.sendMessage(MiniMessage.miniMessage().deserialize(
                         "\n<green>Chat Emojis\n"
