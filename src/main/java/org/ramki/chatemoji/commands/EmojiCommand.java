@@ -74,12 +74,14 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
             String str = args[1].toLowerCase();
             if (DEFAULT_STRING.contains(str)) {
                 chatEmoji.getConfig().set("style", "Default");
+                chatEmoji.saveConfig();
                 chatEmoji.reloadConfig();
                 chatEmoji.getConfig();
                 player.sendMessage(Component.text("style changed to default!", NamedTextColor.GREEN));
                 return true;
             } else if (APPLE_STRING.contains(str)) {
                 chatEmoji.getConfig().set("style", "Apple");
+                chatEmoji.saveConfig();
                 chatEmoji.reloadConfig();
                 chatEmoji.getConfig();
                 player.sendMessage(Component.text("style changed to apple!", NamedTextColor.GREEN));
