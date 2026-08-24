@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.ramki.chatemoji.ChatEmoji;
+import org.ramki.chatemoji.enums.AppleEmojis;
 import org.ramki.chatemoji.enums.Emojis;
 
 import java.util.HashMap;
@@ -25,20 +26,40 @@ public class ChatListener implements Listener {
         final Player player = e.getPlayer();
         Component message = e.message();
 
-        for (Emojis emojis : Emojis.values()) {
-            String key = emojis.getKey();
-            String value = emojis.getValue();
-            heads.put(key, value);
-            PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
-                    .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
-                    .build();
-            Component emojiHead = Component.object(fortnite);
-            // Keysetter -> headComponent -> textreplacement
-            TextReplacementConfig idk = TextReplacementConfig.builder()
-                    .matchLiteral(":" + key + ":")
-                    .replacement(emojiHead)
-                    .build();
-            message = message.replaceText(idk);
+        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Default")) {
+            for (Emojis emojis : Emojis.values()) {
+                String key = emojis.getKey();
+                String value = emojis.getValue();
+                heads.put(key, value);
+                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                        .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
+                        .build();
+                Component emojiHead = Component.object(fortnite);
+                // Keysetter -> headComponent -> textreplacement
+                TextReplacementConfig idk = TextReplacementConfig.builder()
+                        .matchLiteral(":" + key + ":")
+                        .replacement(emojiHead)
+                        .build();
+                message = message.replaceText(idk);
+            }
+        }
+
+        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Apple")) {
+            for (AppleEmojis appleEmojis : AppleEmojis.values()) {
+                String keyApple = appleEmojis.getKey();
+                String valueApple = appleEmojis.getValue();
+                heads.put(keyApple, valueApple);
+                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                        .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(keyApple)))
+                        .build();
+                Component emojiHead = Component.object(fortnite);
+                // Keysetter -> headComponent -> textreplacement
+                TextReplacementConfig idk = TextReplacementConfig.builder()
+                        .matchLiteral(":" + keyApple + ":")
+                        .replacement(emojiHead)
+                        .build();
+                message = message.replaceText(idk);
+            }
         }
 
         e.message(message);

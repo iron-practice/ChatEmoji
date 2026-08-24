@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.ramki.chatemoji.ChatEmoji;
+import org.ramki.chatemoji.enums.AppleEmojis;
 import org.ramki.chatemoji.enums.Emojis;
 
 import javax.inject.Named;
@@ -67,19 +68,48 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
                 player.sendMessage("\n");
 
-            } //Apple style emoji
+            }
+
+            if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("apple")) {
+
+                player.sendMessage(MiniMessage.miniMessage().deserialize(
+                        "\n<green>Chat Emojis\n"
+                ));
+
+                for (AppleEmojis emojis : AppleEmojis.values()) {
+                    String key = emojis.getKey();
+                    String value = emojis.getValue();
+
+                    PlayerHeadObjectContents builder = ObjectContents.playerHead()
+                            .profileProperty(PlayerHeadObjectContents.property("textures", value))
+                            .build();
+                    Component heads = Component.object(builder).color(NamedTextColor.WHITE);
+
+                    Component fortniteText = MiniMessage.miniMessage().deserialize(
+                            "<yellow>:" + key + ": <gray>- <reset>"
+                    );
+                    Component fortnite = fortniteText.append(heads);
+
+                    player.sendMessage(fortnite);
+                }
+
+                player.sendMessage("\n");
+
+            }
         }
 
         if (args.length == 2 && player.hasPermission("chatemoji.admin") && args[0].equalsIgnoreCase("style")) {
             String str = args[1].toLowerCase();
             if (DEFAULT_STRING.contains(str)) {
                 chatEmoji.getConfig().set("style", "Default");
+                chatEmoji.saveConfig();
                 chatEmoji.reloadConfig();
                 chatEmoji.getConfig();
                 player.sendMessage(Component.text("style changed to default!", NamedTextColor.GREEN));
                 return true;
             } else if (APPLE_STRING.contains(str)) {
                 chatEmoji.getConfig().set("style", "Apple");
+                chatEmoji.saveConfig();
                 chatEmoji.reloadConfig();
                 chatEmoji.getConfig();
                 player.sendMessage(Component.text("style changed to apple!", NamedTextColor.GREEN));
