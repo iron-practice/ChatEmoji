@@ -16,12 +16,13 @@ import org.jetbrains.annotations.Nullable;
 import org.ramki.chatemoji.ChatEmoji;
 import org.ramki.chatemoji.enums.Emojis;
 
+import javax.inject.Named;
 import java.util.List;
 import java.util.Set;
 
 public class EmojiCommand implements CommandExecutor, TabCompleter {
-    private static final Set<String> DEFAULT_STRING = Set.of("true", "default");
-    private static final Set<String> APPLE_STRING = Set.of("false", "apple");
+    private static final Set<String> DEFAULT_STRING = Set.of("default");
+    private static final Set<String> APPLE_STRING = Set.of("apple");
 
     private ChatEmoji chatEmoji;
     public EmojiCommand(ChatEmoji chatEmoji) { this.chatEmoji = chatEmoji; }
@@ -40,6 +41,8 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
         if (args.length <= 0) {
             if (toggle.equalsIgnoreCase("default")) {
+
+                //all send messages
 
                 player.sendMessage(MiniMessage.miniMessage().deserialize(
                         "\n<green>Chat Emojis\n"
@@ -67,11 +70,33 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
             } //Apple style emoji
         }
 
+        if (args.length == 2 && player.hasPermission("chatemoji.admin") && args[0].equalsIgnoreCase("style")) {
+            String str = args[1].toLowerCase();
+            if (DEFAULT_STRING.contains(str)) {
+                chatEmoji.getConfig().set("style", "Default");
+                chatEmoji.reloadConfig();
+                chatEmoji.getConfig();
+                player.sendMessage(Component.text("style changed to default!", NamedTextColor.GREEN));
+                return true;
+            } else if (APPLE_STRING.contains(str)) {
+                chatEmoji.getConfig().set("style", "Apple");
+                chatEmoji.reloadConfig();
+                chatEmoji.getConfig();
+                player.sendMessage(Component.text("style changed to apple!", NamedTextColor.GREEN));
+                return true;
+            }
+        }
+
+        if (!player.hasPermission("chatemoji.admin")) {
+            sender.sendMessage(Component.text("You do not have permission to do that", NamedTextColor.RED));
+            return true;
+        }
+
         return true;
     }
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        return List.of();
+        
     }
 }
