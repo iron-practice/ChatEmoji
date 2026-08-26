@@ -1,10 +1,18 @@
 package org.ramki.chatemoji.listeners;
 
+import com.mojang.brigadier.Message;
+import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
+import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -38,7 +46,7 @@ public class ChatListener implements Listener {
                 PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
                         .build();
-                Component emojiHead = Component.object(fortnite);
+                Component emojiHead = Component.object(fortnite).hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)));
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + key + ":")
@@ -60,7 +68,7 @@ public class ChatListener implements Listener {
                 PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(keyApple)))
                         .build();
-                Component emojiHead = Component.object(fortnite);
+                Component emojiHead = Component.object(fortnite).hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)));
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + keyApple + ":")
