@@ -15,6 +15,8 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
+        if (chatEmoji.getConfig().getBoolean("permission") == true && (!e.getPlayer().hasPermission("chatemoji.use"))) return;
+
         if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("default")) {
             for (Emojis emojis : Emojis.values()) {
                 String key = emojis.getKey();
