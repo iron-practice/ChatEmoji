@@ -78,6 +78,18 @@ public class ChatListener implements Listener {
             }
         }
 
-        e.message(message);
+        if (chatEmoji.getConfig().getBoolean("custom-chat")) {
+            e.setCancelled(true);
+
+            Component msg = message;
+
+            for (Audience audience : e.viewers()) {
+                audience.sendMessage(player.displayName()
+                        .append(Component.text(": ")
+                                .append(msg)));
+            }
+        } else {
+            e.message(message);
+        }
     }
 }

@@ -5,3 +5,7 @@ style: "default"
 #if it's true, only players with the permission "chatemoji.use"
 #Permission: "chatemoji.use"
 permission: false
+
+#custom chat render removes the "message modified by server
+#but if enabled, other chat format plugins (LPC, Essentials Chat) will NOT work
+custom-chat: false
