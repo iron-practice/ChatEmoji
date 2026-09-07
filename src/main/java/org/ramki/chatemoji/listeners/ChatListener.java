@@ -29,7 +29,7 @@ public class ChatListener implements Listener {
 
     private HashMap<String, String> heads = new HashMap<>();
 
-    @EventHandler (priority = EventPriority.LOW)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void onChat(AsyncChatEvent e) {
         final Player player = e.getPlayer();
         Component message = e.message();
@@ -78,6 +78,10 @@ public class ChatListener implements Listener {
             }
         }
 
-        e.message(message);
+        ChatRenderer beforeRender = e.renderer();
+        Component finalMessage = message;
+        e.renderer(((source, sourceDisplayName, message1, viewer) ->
+                beforeRender.render(source, sourceDisplayName, finalMessage, viewer)));
+
     }
 }

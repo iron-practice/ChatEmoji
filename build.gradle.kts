@@ -30,10 +30,11 @@ tasks {
         jvmArgs("-Xms2G", "-Xmx2G")
         jvmArgs("-Dcom.mojang.eula.agree=true")
         javaLauncher.set(javaToolchainService.launcherFor {
-            languageVersion.set(JavaLanguageVersion.of(25))
+            languageVersion.set(JavaLanguageVersion.of(21))
         })
         downloadPlugins {
             url("https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
+            url("https://cdn.modrinth.com/data/4o7Lp9aB/versions/aqfFPEOS/LPC-3.7.2.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
         }
     }
 
