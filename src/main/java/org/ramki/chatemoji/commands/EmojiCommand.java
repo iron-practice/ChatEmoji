@@ -125,7 +125,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        if (!player.hasPermission("chatemoji.admin")) {
+        if (args.length >= 1 &&!player.hasPermission("chatemoji.admin")) {
             sender.sendMessage(Component.text("You do not have permission to do that!", NamedTextColor.RED));
             return true;
         }
