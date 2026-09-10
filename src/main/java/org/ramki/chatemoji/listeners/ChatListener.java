@@ -9,9 +9,11 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
+import org.bukkit.Color;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,14 +31,10 @@ public class ChatListener implements Listener {
 
     private HashMap<String, String> heads = new HashMap<>();
 
-    @EventHandler (priority = EventPriority.HIGHEST)
-    public void onChat(AsyncChatEvent e) {
-        final Player player = e.getPlayer();
-        Component message = e.message();
-
+    private Component replaceEmoji(Player player, Component message) {
         if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Default")) {
             if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
-                return;
+                return message;
             }
 
             for (Emojis emojis : Emojis.values()) {
@@ -46,7 +44,7 @@ public class ChatListener implements Listener {
                 PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
                         .build();
-                Component emojiHead = Component.object(fortnite).hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)));
+                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE).hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)));
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + key + ":")
@@ -58,7 +56,7 @@ public class ChatListener implements Listener {
 
         if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Apple")) {
             if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
-                return;
+                return message;
             }
 
             for (AppleEmojis appleEmojis : AppleEmojis.values()) {
@@ -68,7 +66,7 @@ public class ChatListener implements Listener {
                 PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(keyApple)))
                         .build();
-                Component emojiHead = Component.object(fortnite).hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)));
+                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE).hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)));
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + keyApple + ":")
@@ -77,11 +75,19 @@ public class ChatListener implements Listener {
                 message = message.replaceText(idk);
             }
         }
+        return message;
+    }
+
+    @EventHandler (priority = EventPriority.HIGHEST)
+    public void onChat(AsyncChatEvent e) {
+        final Player player = e.getPlayer();
+        Component message = e.message();
 
         ChatRenderer beforeRender = e.renderer();
         Component finalMessage = message;
-        e.renderer(((source, sourceDisplayName, message1, viewer) ->
-                beforeRender.render(source, sourceDisplayName, finalMessage, viewer)));
-
+        e.renderer((source, sourceDisplayName, message1, viewer) -> {
+            Component rendered = beforeRender.render(source, sourceDisplayName, finalMessage, viewer);
+            return replaceEmoji(player, rendered);
+        });
     }
 }
