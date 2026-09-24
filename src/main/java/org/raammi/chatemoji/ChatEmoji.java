@@ -1,12 +1,12 @@
-package org.ramki.chatemoji;
+package org.raammi.chatemoji;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.ramki.chatemoji.api.ChatEmojiAPI;
-import org.ramki.chatemoji.commands.EmojiCommand;
-import org.ramki.chatemoji.listeners.ChatListener;
-import org.ramki.chatemoji.listeners.PlayerListener;
-import org.ramki.chatemoji.papi.ChatEmojiExpansion;
+import org.raammi.chatemoji.api.ChatEmojiAPI;
+import org.raammi.chatemoji.commands.EmojiCommand;
+import org.raammi.chatemoji.listeners.ChatListener;
+import org.raammi.chatemoji.listeners.PlayerListener;
+import org.raammi.chatemoji.papi.ChatEmojiExpansion;
 
 public class ChatEmoji extends JavaPlugin {
 

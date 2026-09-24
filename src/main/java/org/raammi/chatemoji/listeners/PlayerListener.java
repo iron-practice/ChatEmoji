@@ -1,11 +1,11 @@
-package org.ramki.chatemoji.listeners;
+package org.raammi.chatemoji.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.ramki.chatemoji.ChatEmoji;
-import org.ramki.chatemoji.enums.AppleEmojis;
-import org.ramki.chatemoji.enums.Emojis;
+import org.raammi.chatemoji.ChatEmoji;
+import org.raammi.chatemoji.enums.AppleEmojis;
+import org.raammi.chatemoji.enums.Emojis;
 
 import java.util.List;
 

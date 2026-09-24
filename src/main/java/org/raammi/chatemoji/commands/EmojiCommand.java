@@ -1,11 +1,10 @@
-package org.ramki.chatemoji.commands;
+package org.raammi.chatemoji.commands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
-import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,11 +12,10 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.ramki.chatemoji.ChatEmoji;
-import org.ramki.chatemoji.enums.AppleEmojis;
-import org.ramki.chatemoji.enums.Emojis;
+import org.raammi.chatemoji.ChatEmoji;
+import org.raammi.chatemoji.enums.AppleEmojis;
+import org.raammi.chatemoji.enums.Emojis;
 
-import javax.inject.Named;
 import java.util.List;
 import java.util.Set;
 

@@ -1,27 +1,20 @@
-package org.ramki.chatemoji.listeners;
+package org.raammi.chatemoji.listeners;
 
-import com.mojang.brigadier.Message;
 import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
 import net.kyori.adventure.text.object.PlayerHeadObjectContents;
-import org.bukkit.Color;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.ramki.chatemoji.ChatEmoji;
-import org.ramki.chatemoji.enums.AppleEmojis;
-import org.ramki.chatemoji.enums.Emojis;
+import org.raammi.chatemoji.ChatEmoji;
+import org.raammi.chatemoji.enums.AppleEmojis;
+import org.raammi.chatemoji.enums.Emojis;
 
 import java.util.HashMap;
 

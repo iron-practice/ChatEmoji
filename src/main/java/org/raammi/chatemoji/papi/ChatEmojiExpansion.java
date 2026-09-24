@@ -1,10 +1,10 @@
-package org.ramki.chatemoji.papi;
+package org.raammi.chatemoji.papi;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.ramki.chatemoji.ChatEmoji;
+import org.raammi.chatemoji.ChatEmoji;
 
 public class ChatEmojiExpansion extends PlaceholderExpansion {
 
