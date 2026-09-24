@@ -1,6 +1,6 @@
-package org.ramki.chatemoji.api;
+package org.raammi.chatemoji.api;
 
-import org.ramki.chatemoji.ChatEmoji;
+import org.raammi.chatemoji.ChatEmoji;
 
 public class ChatEmojiAPI {
     private static ChatEmojiAPI instance;

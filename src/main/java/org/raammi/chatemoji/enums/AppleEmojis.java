@@ -1,4 +1,4 @@
-package org.ramki.chatemoji.enums;
+package org.raammi.chatemoji.enums;
 
 public enum AppleEmojis {
 
