@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.ramki.chatemoji.commands.EmojiCommand;
 import org.ramki.chatemoji.listeners.ChatListener;
 import org.ramki.chatemoji.listeners.PlayerListener;
+import org.ramki.chatemoji.papi.ChatEmojiExpansion;
 
 public class ChatEmoji extends JavaPlugin {
 
@@ -18,6 +19,10 @@ public class ChatEmoji extends JavaPlugin {
 
         getCommand("emoji").setExecutor(new EmojiCommand(this));
         getCommand("emoji").setTabCompleter(new EmojiCommand(this));
+
+        //PlaceholderAPI expansion register
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))
+            new ChatEmojiExpansion(this).register();
     }
 
     @Override
