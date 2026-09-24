@@ -12,10 +12,12 @@ version = "1.0.0"
 repositories {
     mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.extendedclip.com/releases/")
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.12.3")
 }
 
 java {
@@ -35,6 +37,7 @@ tasks {
         downloadPlugins {
             url("https://cdn.modrinth.com/data/Vebnzrzj/versions/b0mk8uS6/LuckPerms-Bukkit-5.5.71.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
             url("https://cdn.modrinth.com/data/4o7Lp9aB/versions/aqfFPEOS/LPC-3.7.2.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
+            url("https://cdn.modrinth.com/data/lKEzGugV/versions/pIvQcXW8/PlaceholderAPI-2.12.3.jar?mr_download_reason=standalone&mr_game_version=1.21.11&mr_loader=paper")
         }
     }
 

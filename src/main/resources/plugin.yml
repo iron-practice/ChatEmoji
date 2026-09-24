@@ -6,6 +6,12 @@ folia-supported: true
 description: Player head emojis in chat.
 authors: [ ue_rami ]
 
+dependencies:
+  server:
+    PlaceholderAPI:
+      load: BEFORE #
+      required: false
+
 commands:
   emoji:
     usage: /emoji
