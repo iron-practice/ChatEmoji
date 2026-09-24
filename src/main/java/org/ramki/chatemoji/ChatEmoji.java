@@ -2,6 +2,7 @@ package org.ramki.chatemoji;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.ramki.chatemoji.api.ChatEmojiAPI;
 import org.ramki.chatemoji.commands.EmojiCommand;
 import org.ramki.chatemoji.listeners.ChatListener;
 import org.ramki.chatemoji.listeners.PlayerListener;
@@ -9,8 +10,15 @@ import org.ramki.chatemoji.papi.ChatEmojiExpansion;
 
 public class ChatEmoji extends JavaPlugin {
 
+    private static ChatEmoji instance;
+
+    public ChatEmoji() {
+        ChatEmoji.instance = this;
+    }
+
     @Override
     public void onEnable() {
+        ChatEmojiAPI.init(this);
         saveDefaultConfig();
         getConfig();
 
@@ -27,7 +35,7 @@ public class ChatEmoji extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        ChatEmojiAPI.disable(this);
     }
 
 }
