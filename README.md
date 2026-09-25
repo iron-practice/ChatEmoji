@@ -4,9 +4,12 @@
 
 Player head emojis in chat, using the object text components added in Minecraft 1.21.9.
 
-Type `:smile:` in chat and it renders as a player head. `/emoji` lists all available emojis.
+ChatEmoji replaces ``:name:`` key in chat messages with player head emojis.
+Players can list all emojis with ``/emoji``.
 
-Requires Paper 1.21.9 or newer. No dependencies.
+There's a server style that can be switched trough with ``/emoji style <default/apple>``. only with permission ``chatemoji.admin``. (style also changeable in ``config.yml``)
+
+Enable only players with permission ``chatemoji.use`` in the ``config.yml``.
 
 ## Configuration
 
