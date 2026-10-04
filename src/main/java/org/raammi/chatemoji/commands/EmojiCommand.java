@@ -1,6 +1,7 @@
 package org.raammi.chatemoji.commands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.object.ObjectContents;
@@ -58,7 +59,8 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
                     PlayerHeadObjectContents builder = ObjectContents.playerHead()
                             .profileProperty(PlayerHeadObjectContents.property("textures", value))
                             .build();
-                    Component heads = Component.object(builder).color(NamedTextColor.WHITE);
+                    Component heads = Component.object(builder).color(NamedTextColor.WHITE)
+                            .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + key + ":"));
 
                      Component fortniteText = MiniMessage.miniMessage().deserialize(
                             "<yellow>:" + key + ": <gray>- <reset>"
@@ -89,7 +91,8 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
                     PlayerHeadObjectContents builder = ObjectContents.playerHead()
                             .profileProperty(PlayerHeadObjectContents.property("textures", value))
                             .build();
-                    Component heads = Component.object(builder).color(NamedTextColor.WHITE);
+                    Component heads = Component.object(builder).color(NamedTextColor.WHITE)
+                            .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + key + ":"));
 
                     Component fortniteText = MiniMessage.miniMessage().deserialize(
                             "<yellow>:" + key + ": <gray>- <reset>"
