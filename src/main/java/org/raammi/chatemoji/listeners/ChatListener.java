@@ -35,10 +35,10 @@ public class ChatListener implements Listener {
                 String key = emojis.getKey();
                 String value = emojis.getValue();
                 heads.put(key, value);
-                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                PlayerHeadObjectContents headContent = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
                         .build();
-                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE)
+                Component emojiHead = Component.object(headContent).color(NamedTextColor.WHITE)
                         .hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)))
                         .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + key + ":"));;
                 // Keysetter -> headComponent -> textreplacement
@@ -59,10 +59,10 @@ public class ChatListener implements Listener {
                 String keyApple = appleEmojis.getKey();
                 String valueApple = appleEmojis.getValue();
                 heads.put(keyApple, valueApple);
-                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                PlayerHeadObjectContents headContent = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(keyApple)))
                         .build();
-                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE)
+                Component emojiHead = Component.object(headContent).color(NamedTextColor.WHITE)
                         .hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)))
                         .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + keyApple + ":"));
                 // Keysetter -> headComponent -> textreplacement
