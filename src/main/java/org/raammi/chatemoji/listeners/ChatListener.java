@@ -4,6 +4,7 @@ import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
+import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.object.ObjectContents;
@@ -34,10 +35,12 @@ public class ChatListener implements Listener {
                 String key = emojis.getKey();
                 String value = emojis.getValue();
                 heads.put(key, value);
-                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                PlayerHeadObjectContents headContent = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(key)))
                         .build();
-                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE).hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)));
+                Component emojiHead = Component.object(headContent).color(NamedTextColor.WHITE)
+                        .hoverEvent(HoverEvent.showText(Component.text(":" + key + ":", NamedTextColor.GREEN)))
+                        .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + key + ":"));;
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + key + ":")
@@ -56,10 +59,12 @@ public class ChatListener implements Listener {
                 String keyApple = appleEmojis.getKey();
                 String valueApple = appleEmojis.getValue();
                 heads.put(keyApple, valueApple);
-                PlayerHeadObjectContents fortnite = ObjectContents.playerHead()
+                PlayerHeadObjectContents headContent = ObjectContents.playerHead()
                         .profileProperty(PlayerHeadObjectContents.property("textures", heads.get(keyApple)))
                         .build();
-                Component emojiHead = Component.object(fortnite).color(NamedTextColor.WHITE).hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)));
+                Component emojiHead = Component.object(headContent).color(NamedTextColor.WHITE)
+                        .hoverEvent(HoverEvent.showText(Component.text(":" + keyApple + ":", NamedTextColor.GREEN)))
+                        .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.SUGGEST_COMMAND, ":" + keyApple + ":"));
                 // Keysetter -> headComponent -> textreplacement
                 TextReplacementConfig idk = TextReplacementConfig.builder()
                         .matchLiteral(":" + keyApple + ":")
