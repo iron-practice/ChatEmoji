@@ -31,7 +31,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         if (!(sender instanceof Player player)) return true;
 
-        String toggle = chatEmoji.getConfig().getString("style");
+        String toggle = chatEmoji.getConfig().getString("style", "default");
 
         if (args.length == 1 && args[0].equalsIgnoreCase("reload") && player.hasPermission("chatemoji.admin")) {
             chatEmoji.reloadConfig();
@@ -74,7 +74,7 @@ public class EmojiCommand implements CommandExecutor, TabCompleter {
 
             }
 
-            if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("apple")) {
+            if (chatEmoji.getConfig().getString("style", "default").equalsIgnoreCase("apple")) {
                 if (chatEmoji.getConfig().getBoolean("permission") == true && (!sender.hasPermission("chatemoji.use"))) {
                     sender.sendMessage(Component.text("You do not have permission to do that!", NamedTextColor.RED));
                     return true;

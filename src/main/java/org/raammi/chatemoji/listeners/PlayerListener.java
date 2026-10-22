@@ -17,7 +17,7 @@ public class PlayerListener implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         if (chatEmoji.getConfig().getBoolean("permission") == true && (!e.getPlayer().hasPermission("chatemoji.use"))) return;
 
-        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("default")) {
+        if (chatEmoji.getConfig().getString("style", "default").equalsIgnoreCase("default")) {
             for (Emojis emojis : Emojis.values()) {
                 String key = emojis.getKey();
 
@@ -25,7 +25,7 @@ public class PlayerListener implements Listener {
             }
         }
 
-        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("apple")) {
+        if (chatEmoji.getConfig().getString("style", "default").equalsIgnoreCase("apple")) {
             for (AppleEmojis appleEmojis : AppleEmojis.values()) {
                 String key = appleEmojis.getKey();
 

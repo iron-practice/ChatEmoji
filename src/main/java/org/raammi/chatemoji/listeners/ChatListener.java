@@ -26,7 +26,7 @@ public class ChatListener implements Listener {
     private HashMap<String, String> heads = new HashMap<>();
 
     private Component replaceEmoji(Player player, Component message) {
-        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Default")) {
+        if (chatEmoji.getConfig().getString("style", "default").equalsIgnoreCase("Default")) {
             if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
                 return message;
             }
@@ -50,7 +50,7 @@ public class ChatListener implements Listener {
             }
         }
 
-        if (chatEmoji.getConfig().getString("style").equalsIgnoreCase("Apple")) {
+        if (chatEmoji.getConfig().getString("style", "default").equalsIgnoreCase("Apple")) {
             if (chatEmoji.getConfig().getBoolean("permission") == true && (!player.hasPermission("chatemoji.use"))) {
                 return message;
             }
